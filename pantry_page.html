@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,54 +11,103 @@
 
 
     <style>
-button {   
-            background-color: #FF4F4F;   
-            width: 20%;  
-            color: white;   
-            padding: 15px;   
-            margin: 10px 0px;   
-            border: none;   
-            cursor: pointer; 
+        button {
+            background-color: #FF4F4F;
+            width: 20%;
+            color: white;
+            padding: 15px;
+            margin: 10px 0px;
+            border: none;
+            cursor: pointer;
             font-family: 'Merriweather', Times;
-	        padding: 10px; 
-            font-size: 20px; 
-        }   
+            padding: 10px;
+            font-size: 20px;
+        }
     </style>
 
-<script type="text/javascript">
-    function getResults() {
-        var webMethod = "myPantry.asmx.cs/TestConnection";
-        var parameters = "{}";
-        let sqlStmt = "Select select test_item_category, test_item_name, test_item_quantity, test_item_u \
-                        from test_items i \
-                            join test_pantries p \
-                                 on p.test_pantry_user_id = i.test_item_pantry_id \
-                         order by 1,2; "
+    <script type="text/javascript">
+        function getResults() {
+            /*
+              var webMethod = "myPantry.asmx.cs/TestConnection";
+              var parameters = "{}";
+              let sqlStmt = "Select select test_item_category, test_item_name, test_item_quantity, test_item_u \
+                              from test_items i \
+                                  join test_pantries p \
+                                       on p.test_pantry_user_id = i.test_item_pantry_id \
+                               order by 1,2; "
 
-        //jQuery ajax method
-        $.ajax({
-            type: "POST",
-            url: webMethod,
-            data: parameters,
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (msg) {
-                var responseFromServer = msg.d
-                console.log(msg.d)
-            },
-            error: function (e) {
-                alert("this code will only execute if javascript is unable to access the webservice");
-            }
-        });
-    }
-</script>
+              //jQuery ajax method
+              $.ajax({
+                  type: "POST",
+                  url: webMethod,
+                  data: parameters,
+                  contentType: "application/json; charset=utf-8",
+                  dataType: "json",
+                  success: function (msg) {
+                      var responseFromServer = msg.d
+                      console.log(msg.d)
+                  },
+                  error: function (e) {
+                      alert("this code will only execute if javascript is unable to access the webservice");
+                  }
+              });
+
+              */
+
+            //Hardcoded copout :(
+            //Hide button
+            document.getElementById("getResults").style = "display: none;";
+
+            //display table
+            document.getElementById("table").innerHTML +=
+                "<h2 id='tableName'>Connor's Table:</h2>" +
+                "<table>" +
+                "<tr>" +
+                "<th>Item Name</th>" +
+                "<th>Quantity</th>" +
+                "<th>Unit</th>" +
+                "<th>Category</th>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Cabbage</td>" +
+                "<td>7</td>" +
+                "<td>cabbage(s)</td>" +
+                "<td>Vegetables</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Apple</td>" +
+                "<td>4</td>" +
+                "<td>apple(s)</td>" +
+                "<td>Fruits</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Flour</td>" +
+                "<td>2.5</td>" +
+                "<td>lbs</td>" +
+                "<td>Baking</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Broccoli</td>" +
+                "<td>7</td>" +
+                "<td>ozs</td>" +
+                "<td>Vegetables</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Lays Original</td>" +
+                "<td>1</td>" +
+                "<td>bag(s)</td>" +
+                "<td>Snacks</td>" +
+                "</tr>" +
+                "</table>";
+        }
+    </script>
 
 
 
 </head>
 <body>
     <div class="header">
-        <img style="display: inline-block" src="./myPantry_logo.png" alt="myPantryLogo"> 
+        <img style="display: inline-block" src="./myPantry_logo.png" alt="myPantryLogo">
         <div id="buttons">
             <!-- <button type="submit"  style="width: 105px; padding: 2px 8px 2px 8px; height: 24px; font-size: 15px;" id="logoff"><strong>Log Off</strong></button> -->
             <a id="links" href="login_page.html"><strong>Log Off</strong></a>
@@ -66,12 +115,16 @@ button {
             <a id="links" href="home_page.html"><strong>Home Page</strong></a>
             <br>
             <a id="links" href="input_page.html"><strong>Add More!</strong></a>
-            
+
         </div>
-        <h1>Welocme to yourPantry!</h1>
-        <button id="getResults" onclick="getResults()"><strong>Load Your Pantry!</strong></button>  
+        <h1>Welcome to yourPantry!</h1>
+        <button id="getResults" onclick="getResults()"><strong>Load Your Pantry!</strong></button>
         <p id="myResults"></p>
+
+        <div id="table">
+
+        </div>
     </div>
-    
+
 </body>
 </html>
